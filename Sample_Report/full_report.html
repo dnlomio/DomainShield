@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Security Assessment Report - example.com</title>
+    <link rel="icon" type="image/png" href="DomainShield-Preview.png">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: #0c0f17;
+            font-family: 'Poppins', sans-serif;
+            color: #e8eef5;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header Styles */
+        .header {
+            padding: 50px 20px;
+            background: linear-gradient(135deg, #0d1b2a, #1f3b58);
+            border-bottom: 2px solid rgba(255,255,255,0.1);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            margin-bottom: 30px;
+        }
+
+        .header-content {
+            max-width: 900px;
+            margin: auto;
+            text-align: center;
+        }
+
+        .brand-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 25px;
+            margin-bottom: 25px;
+        }
+
+        .shield-icon {
+    	    width: 100px;  /* Increased from 80px */
+    	    height: 100px; /* Increased from 80px */
+    	    filter: drop-shadow(2px 2px 6px rgba(0,0,0,0.4));
+    	    transition: transform 0.3s ease;
+    	    object-fit: contain;
+	}
+
+        .shield-icon:hover { 
+            transform: scale(1.1); 
+            filter: drop-shadow(2px 2px 8px rgba(0,0,0,0.6));
+        }
+
+        .fallback-icon {
+            font-size: 5em; /* Increased from 4em */
+            filter: drop-shadow(2px 2px 6px rgba(0,0,0,0.4));
+            transition: transform 0.3s ease;
+        }
+
+        .fallback-icon:hover {
+            transform: scale(1.1);
+        }
+
+        .brand-text h1 {
+            font-size: 2.6em;
+            margin: 0;
+            color: #fff;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .brand-text h2 {
+            font-size: 1.25em;
+            margin: 5px 0 0;
+            color: #dce2e8;
+            font-weight: 300;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 22px;
+            margin-top: 35px;
+        }
+
+        .info-item {
+            padding: 18px;
+            background: rgba(255,255,255,0.08);
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.15);
+            backdrop-filter: blur(6px);
+            transition: transform 0.25s ease, background 0.25s ease;
+        }
+
+        .info-item:hover {
+            transform: translateY(-5px);
+            background: rgba(255,255,255,0.14);
+        }
+
+        .info-label {
+            display: block;
+            font-size: 0.8em;
+            color: #aab7c4;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .info-value {
+            display: block;
+            font-size: 1.15em;
+            color: #fff;
+            font-weight: 500;
+        }
+
+        /* Content Section Styles */
+        .content-section {
+            background: #1a1f2e;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 25px;
+            border: 1px solid #2a3142;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .section-title {
+            color: #fff;
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #3498db;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Summary Styles */
+        .summary {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: #fff;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            border: 1px solid #4a5f7a;
+        }
+
+        .summary h3 {
+            color: #fff;
+            margin-top: 0;
+            font-size: 1.4em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .summary p {
+            margin: 12px 0;
+            font-size: 1.1em;
+            color: #ecf0f1;
+        }
+
+        .summary strong {
+            color: #fff;
+            font-weight: 600;
+        }
+
+        /* Finding Styles */
+        .critical { 
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white; 
+            padding: 20px; 
+            margin: 15px 0; 
+            border-radius: 8px;
+            border-left: 5px solid #ff6b6b;
+            box-shadow: 0 4px 12px rgba(231, 76, 60, 0.3);
+        }
+
+        .high { 
+            background: linear-gradient(135deg, #e67e22, #d35400);
+            color: white; 
+            padding: 20px; 
+            margin: 15px 0; 
+            border-radius: 8px;
+            border-left: 5px solid #ffa502;
+            box-shadow: 0 4px 12px rgba(230, 126, 34, 0.3);
+        }
+
+        .medium { 
+            background: linear-gradient(135deg, #f39c12, #e67e22);
+            color: white; 
+            padding: 20px; 
+            margin: 15px 0; 
+            border-radius: 8px;
+            border-left: 5px solid #ffc312;
+            box-shadow: 0 4px 12px rgba(243, 156, 18, 0.3);
+        }
+
+        .low { 
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white; 
+            padding: 20px; 
+            margin: 15px 0; 
+            border-radius: 8px;
+            border-left: 5px solid #48dbfb;
+            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+        }
+
+        .pass { 
+            background: linear-gradient(135deg, #27ae60, #229954);
+            color: white; 
+            padding: 20px; 
+            margin: 15px 0; 
+            border-radius: 8px;
+            border-left: 5px solid #2ecc71;
+            box-shadow: 0 4px 12px rgba(39, 174, 96, 0.3);
+        }
+
+        .finding-item strong {
+            font-size: 1.1em;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        /* FIXED: Better contrast for Recommendation and POC headers */
+        .recommendation { 
+            background: rgba(255, 255, 255, 0.15); 
+            padding: 15px; 
+            margin: 12px 0; 
+            border-radius: 6px; 
+            color: #fff; 
+            border-left: 4px solid #f1c40f;
+        }
+
+        .recommendation-header {
+            font-weight: bold;
+            color: #FFD700; /* Bright gold for high contrast */
+            margin-bottom: 8px;
+            display: block;
+            font-size: 1.05em;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 4px 8px;
+            border-radius: 4px;
+            border: 1px solid #FFD700;
+        }
+
+        .poc { 
+            background: rgba(255, 255, 255, 0.1); 
+            padding: 15px; 
+            margin: 12px 0; 
+            border-radius: 6px; 
+            border-left: 4px solid #3498db; 
+            font-family: 'Courier New', monospace; 
+            font-size: 0.9em; 
+            color: #e8eef5;
+            word-wrap: break-word;
+        }
+
+        .poc-header {
+            font-weight: bold;
+            color: #00FFFF; /* Bright cyan for high contrast */
+            margin-bottom: 8px;
+            display: block;
+            font-size: 1.05em;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 4px 8px;
+            border-radius: 4px;
+            border: 1px solid #00FFFF;
+        }
+
+        /* Technical Details Styles */
+        .technical-details {
+            background: #1a1f2e;
+            color: #e8eef5;
+        }
+
+        .technical-details h4 {
+            color: #3498db;
+            margin: 20px 0 10px 0;
+            font-size: 1.1em;
+        }
+
+        .technical-details pre {
+            background: #0c0f17;
+            padding: 15px;
+            border-radius: 6px;
+            border: 1px solid #2a3142;
+            color: #aab7c4;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            overflow-x: auto;
+            margin: 10px 0;
+        }
+
+        .technical-details ul {
+            color: #e8eef5;
+            padding-left: 20px;
+        }
+
+        .technical-details li {
+            margin: 8px 0;
+            color: #e8eef5;
+        }
+
+        /* Footer Styles */
+        footer {
+            margin-top: 40px; 
+            padding: 25px; 
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: #ecf0f1; 
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid #4a5f7a;
+        }
+
+        footer p {
+            margin: 5px 0;
+            color: #ecf0f1;
+        }
+
+        footer strong {
+            color: #fff;
+        }
+
+        /* General Text Styles */
+        h3 {
+            color: #fff;
+            font-size: 1.4em;
+            margin: 30px 0 15px 0;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #3498db;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        h4 {
+            color: #3498db;
+            margin: 20px 0 10px 0;
+        }
+
+        p {
+            color: #e8eef5;
+            margin: 10px 0;
+        }
+
+        /* No Findings Message */
+        .no-findings {
+            text-align: center;
+            color: #aab7c4;
+            font-style: italic;
+            padding: 20px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <div class="header-content">
+            <div class="brand-section">
+                <img src="DomainShield-Preview.png" alt="DomainShield Logo" class="shield-icon">
+                <div class="brand-text">
+                    <h1>DomainShield</h1>
+                    <h2>Security Assessment Report</h2>
+                </div>
+            </div>
+
+            <div class="info-grid">
+                <div class="info-item">
+                    <span class="info-label">Target Domain</span>
+                    <span class="info-value">example.com</span>
+                </div>
+
+                <div class="info-item">
+                    <span class="info-label">Report Date</span>
+                    <span class="info-value">Friday 28 November 2025 02:50:20 PM IST</span>
+                </div>
+
+                <div class="info-item">
+                    <span class="info-label">Assessment Type</span>
+                    <span class="info-value">DNS & Email Security</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Executive Summary -->
+        <div class="summary">
+            <h3>📊 Executive Summary</h3>
+            <p><strong>Critical Findings:</strong> 0</p>
+            <p><strong>High Findings:</strong> 2</p>
+            <p><strong>Medium Findings:</strong> 2</p>
+            <p><strong>Low Findings:</strong> 3</p>
+            <p><strong>Passed Checks:</strong> 7</p>
+        </div>
+        <div class="content-section">
+            <h3>🚨 Critical Severity Findings</h3>
+            <div class="no-findings">No critical findings. Good job!</div>
+        </div>
+        <div class="content-section">
+            <h3>⚠️ High Severity Findings</h3>
+            <div class="high finding-item">
+                <strong>⚠️ Name server a.iana-servers.net. may be an open resolver</strong>
+                <div class="recommendation">
+                    <span class="recommendation-header">Recommendation</span>
+                    Configure name servers to only answer for authorized domains
+                </div>
+                <div class="poc">
+                    <span class="poc-header">Proof of Concept</span>
+                    Name server 199.43.135.53 responded to recursive query for google.com
+                </div>
+            </div>
+            <div class="high finding-item">
+                <strong>⚠️ Name server b.iana-servers.net. may be an open resolver</strong>
+                <div class="recommendation">
+                    <span class="recommendation-header">Recommendation</span>
+                    Configure name servers to only answer for authorized domains
+                </div>
+                <div class="poc">
+                    <span class="poc-header">Proof of Concept</span>
+                    Name server 199.43.133.53 responded to recursive query for google.com
+                </div>
+            </div>
+        </div>
+        <div class="content-section">
+            <h3>🔸 Medium Severity Findings</h3>
+            <div class="medium finding-item">
+                <strong>🔸 SPF record may have syntax issues</strong>
+                <div class="recommendation">
+                    <span class="recommendation-header">Recommendation</span>
+                    Validate SPF record syntax and mechanisms
+                </div>
+                <div class="poc">
+                    <span class="poc-header">Proof of Concept</span>
+                    SPF Record: "v=spf1 -all"
+                </div>
+            </div>
+            <div class="medium finding-item">
+                <strong>🔸 SSL certificate expires in 48 days</strong>
+                <div class="recommendation">
+                    <span class="recommendation-header">Recommendation</span>
+                    Plan certificate renewal
+                </div>
+                <div class="poc">
+                    <span class="poc-header">Proof of Concept</span>
+                    Certificate expires on: Jan 15 23:59:59 2026 GMT
+                </div>
+            </div>
+        </div>
+        <div class="content-section">
+            <h3>ℹ️ Low Severity Findings</h3>
+            <div class="low finding-item">
+                <strong>ℹ️ DMARC reporting not configured</strong>
+                <div class="recommendation">
+                    <span class="recommendation-header">Recommendation</span>
+                    Add rua tag to receive DMARC aggregate reports
+                </div>
+                <div class="poc">
+                    <span class="poc-header">Proof of Concept</span>
+                    DMARC record without reporting: "v=DMARC1;p=reject;sp=reject;adkim=s;aspf=s"
+                </div>
+            </div>
+            <div class="low finding-item">
+                <strong>ℹ️ Service detected on port 80</strong>
+                <div class="recommendation">
+                    <span class="recommendation-header">Recommendation</span>
+                    Verify this service needs to be publicly accessible
+                </div>
+                <div class="poc">
+                    <span class="poc-header">Proof of Concept</span>
+                    Port 80 is open on 23.220.75.232 (service: HTTP)
+                </div>
+            </div>
+            <div class="low finding-item">
+                <strong>ℹ️ Service detected on port 443</strong>
+                <div class="recommendation">
+                    <span class="recommendation-header">Recommendation</span>
+                    Verify this service needs to be publicly accessible
+                </div>
+                <div class="poc">
+                    <span class="poc-header">Proof of Concept</span>
+                    Port 443 is open on 23.220.75.232 (service: HTTPS)
+                </div>
+            </div>
+        </div>
+        <div class="content-section">
+            <h3>✅ Passed Security Checks</h3>
+            <div class="pass finding-item">
+                <strong>✅ Name server b.iana-servers.net. (199.43.133.53) is responsive</strong>
+            </div>
+            <div class="pass finding-item">
+                <strong>✅ Name server a.iana-servers.net. (199.43.135.53) is responsive</strong>
+            </div>
+            <div class="pass finding-item">
+                <strong>✅ Name servers are properly distributed across multiple subnets</strong>
+            </div>
+            <div class="pass finding-item">
+                <strong>✅ DNSSEC is properly configured</strong>
+            </div>
+            <div class="pass finding-item">
+                <strong>✅ DMARC is configured with reject policy (strongest)</strong>
+            </div>
+            <div class="pass finding-item">
+                <strong>✅ DKIM record found for selector 'default'</strong>
+            </div>
+            <div class="pass finding-item">
+                <strong>✅ HTTPS is properly configured and accessible</strong>
+            </div>
+        </div>
+        <div class="content-section technical-details">
+            <h3>🔧 Technical Details</h3>
+            
+            <h4>Name Servers:</h4>
+            <pre>b.iana-servers.net.
+a.iana-servers.net.</pre>
+            
+            <h4>SPF Record:</h4>
+            <pre>"v=spf1 -all"</pre>
+            
+            <h4>DMARC Record:</h4>
+            <pre>"v=DMARC1;p=reject;sp=reject;adkim=s;aspf=s"</pre>
+            
+            <h4>IP Addresses:</h4>
+            <pre>a.iana-servers.net.: 199.43.135.53
+b.iana-servers.net.: 199.43.133.53</pre>
+        </div>
+
+        <div class="content-section technical-details">
+            <h3>📋 Assessment Methodology</h3>
+            
+            <h4>Security Checks Performed:</h4>
+            <ul>
+                <li>DNS Infrastructure Analysis</li>
+                <li>Email Security (SPF/DKIM/DMARC) Validation</li>
+                <li>Network Service Discovery</li>
+                <li>SSL/TLS Configuration Check</li>
+                <li>DNS Security Extensions (DNSSEC)</li>
+                <li>Open Resolver Testing</li>
+                <li>Name Server Distribution Analysis</li>
+            </ul>
+            
+            <h4>Tools Used:</h4>
+            <ul>
+                <li>dig (DNS analysis)</li>
+                <li>nslookup</li>
+                <li>whois</li>
+                <li>curl</li>
+                <li>OpenSSL</li>
+                <li>netcat</li>
+            </ul>
+        </div>
+
+        <footer>
+            <p><strong>Confidential Report</strong> - For authorized personnel only</p>
+            <p>Generated by DomainShield - Automated Mail Security Auditor v1.0</p>
+        </footer>
+    </div>
+</body>
+</html>
