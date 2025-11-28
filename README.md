@@ -3,7 +3,7 @@
 **DomainShield** is a comprehensive DNS & Email Security Auditor that performs automated security assessments for domain infrastructure. It identifies vulnerabilities in DNS configuration, email authentication, and network services, generating professional security reports.
 
 <p align="center">
-<img src="https://github.com/Debajyoti0-0/No4bidden/blob/main/Img/DomainShield-Preview.png" alt="DomainShield Tool Logo" width="400">
+<img src="https://github.com/Debajyoti0-0/DomainShield/blob/main/Img/DomainShield-Preview.png" alt="DomainShield Tool Logo" width="400">
 </p>
 
 ## 📋 Features
@@ -444,3 +444,4 @@ When reporting bugs, please include:
 ---
 
 **⭐ If you find DomainShield useful, please consider giving it a star on GitHub!**
+
