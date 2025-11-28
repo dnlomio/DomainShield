@@ -224,7 +224,7 @@ domainshield --no-html example.com
 
 Want to see what DomainShield reports look like before running it? Check out the sample reports in the `Sample_Report/` directory:
 
-- **[Sample_Report/full_report.html](https://github.com/Debajyoti0-0/No4bidden/blob/main/Sample_Report/full_report.html)** - View a complete HTML report sample
+- **[Sample_Report/full_report.html](https://github.com/Debajyoti0-0/DomainShield/blob/main/Sample_Report/full_report.html)** - View a complete HTML report sample
 
 
 ### Console Summary
@@ -444,4 +444,5 @@ When reporting bugs, please include:
 ---
 
 **⭐ If you find DomainShield useful, please consider giving it a star on GitHub!**
+
 
