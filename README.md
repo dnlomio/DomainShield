@@ -3,7 +3,7 @@
 **DomainShield** is a comprehensive DNS & Email Security Auditor that performs automated security assessments for domain infrastructure. It identifies vulnerabilities in DNS configuration, email authentication, and network services, generating professional security reports.
 
 <p align="center">
-<img src="https://github.com/Debajyoti0-0/DomainShield/blob/main/Img/DomainShield.png" alt="DomainShield Tool Logo" width="400">
+<img src="https://github.com/Debajyoti0-0/DomainShield/raw/main/Img/DomainShield.png" alt="DomainShield Tool Logo" width="400">
 </p>
 
 ## 📋 Features
@@ -224,7 +224,7 @@ domainshield --no-html example.com
 
 Want to see what DomainShield reports look like before running it? Check out the sample reports in the `Sample_Report/` directory:
 
-- **[Sample_Report/full_report.html](https://htmlpreview.github.io/?https://github.com/Debajyoti0-0/DomainShield/blob/main/Sample_Report/full_report.html)** - View a complete HTML report sample
+- **[Sample_Report/full_report.html](https://htmlpreview.github.io/?https://github.com/Debajyoti0-0/DomainShield/blob/main/Sample_Report/full_report.html)** - See a complete assessment report with findings, recommendations, and proof of concept evidence
 
 
 ### Console Summary
@@ -292,7 +292,8 @@ DomainShield/
 ├── install.sh              # Automatic dependency installer
 ├── Uninstall.sh           # Clean uninstaller
 ├── Img/
-│   └── DomainShield-Preview.png  # Project logo
+│   ├── DomainShield-Preview.png  # Project logo
+│   └── DomainShield.png  # Project logo (not Preview.png)
 ├── Sample_Report/          # Example reports
 │   ├── full_report.html    # Sample HTML report
 │   └── DomainShield-Preview.png # Logo preview
@@ -396,7 +397,7 @@ chmod +x DomainShield.sh
 
 ## 📄 License
 
-This project is licensed under the GNU License - see the [LICENSE](https://github.com/Debajyoti0-0/DomainShield/blob/main/LICENSE) file for details.
+This project is licensed under the GNU General Public License v3.0 - see the [LICENSE](LICENSE) file for details.
 
 ## 👨‍💻 Author
 
@@ -444,6 +445,7 @@ When reporting bugs, please include:
 ---
 
 **⭐ If you find DomainShield useful, please consider giving it a star on GitHub!**
+
 
 
 
